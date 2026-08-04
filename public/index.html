@@ -223,10 +223,29 @@
 
   <section class="intro" aria-labelledby="intro-heading">
     <div class="intro__inner">
-      <div class="intro__copy">
+      <div class="intro__top">
+        <div class="intro__tag" data-reveal>
+          <p class="intro__tag-label">Servicios SINOX</p>
+          <a class="link-arrow" href="#servicios">
+            <span class="link-arrow__label">Ver todos los servicios</span>
+            <svg class="link-arrow__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M4 12h15M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
         <h2 class="intro__heading" id="intro-heading" data-reveal>
           Servicios industriales que se adaptan al nivel de exigencia de tu operación
         </h2>
+      </div>
+
+      <div class="intro__copy">
         <p class="intro__paragraph" data-reveal>
           SINOX es una empresa mexicana fundada en 2018 en Querétaro, especializada en limpieza, mantenimiento,
           fumigación y jardinería para industrias de alta exigencia técnica: aeroespacial, data centers,
@@ -240,19 +259,78 @@
 
       <ul class="stats" data-reveal-stagger>
         <li class="stat" data-reveal>
-          <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="300">300</span></p>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.75" />
+                <path
+                  d="M3.5 19c.6-3 3-5 5.5-5s4.9 2 5.5 5"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M15.5 4.5c1.4.4 2.5 1.7 2.5 3.2 0 1.6-1.1 2.9-2.6 3.2"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <path d="M16 14c2.1.4 3.8 2.1 4.3 4.6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+              </svg>
+            </span>
+            <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="300">300</span></p>
+          </div>
           <p class="stat__label">colaboradores en operación</p>
         </li>
+
         <li class="stat" data-reveal>
-          <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="20">20</span></p>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linejoin="round"
+                />
+                <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.75" />
+              </svg>
+            </span>
+            <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="20">20</span></p>
+          </div>
           <p class="stat__label">parques industriales atendidos</p>
         </li>
+
         <li class="stat" data-reveal>
-          <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="8">8</span></p>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="5.5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.75" />
+                <path d="M4 10h16" stroke="currentColor" stroke-width="1.75" />
+                <path d="M8 3.5v3.5M16 3.5v3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+              </svg>
+            </span>
+            <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="8">8</span></p>
+          </div>
           <p class="stat__label">años de experiencia</p>
         </li>
+
         <li class="stat" data-reveal>
-          <p class="stat__value"><span data-count-to="4">4</span></p>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3.5 20.5 8 12 12.5 3.5 8 12 3.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linejoin="round"
+                />
+                <path d="M3.5 12.5 12 17l8.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" />
+                <path d="M3.5 16.5 12 21l8.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <p class="stat__value"><span data-count-to="4">4</span></p>
+          </div>
           <p class="stat__label">líneas de servicio especializadas</p>
         </li>
       </ul>
@@ -272,9 +350,26 @@
     </div>
   </section>
 
-  <section class="model" id="modelo-operativo" aria-labelledby="model-heading">
+  <section class="model" id="modelo-operativo" aria-labelledby="model-heading" data-model>
+    <div class="model__video-frame" data-reveal data-model-video-frame>
+      <video
+        class="model__video"
+        data-model-video
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="assets/video/sinox-clip-poster.jpg"
+      >
+        <source src="assets/video/sinox-clip.mp4" type="video/mp4" />
+      </video>
+      <div class="model__scrim"></div>
+    </div>
+
     <div class="model__inner">
-      <h2 class="model__heading" id="model-heading" data-reveal>Modelo operativo</h2>
+      <h2 class="model__heading" id="model-heading" data-reveal>
+        <span class="model__heading-light">Modelo</span> <span class="model__heading-bold">operativo</span>
+      </h2>
 
       <div class="model__grid" data-reveal-stagger>
         <article class="model-card" data-reveal>
@@ -316,5 +411,6 @@
 <script src="assets/js/header.js" defer></script>
 <script src="assets/js/hero.js" defer></script>
 <script src="assets/js/scroll-reveal.js" defer></script>
+<script src="assets/js/model-video.js" defer></script>
 </body>
 </html>
