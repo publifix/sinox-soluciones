@@ -21,7 +21,7 @@
   var content = [
     {
       eyebrow: 'SINOX Soluciones · Querétaro',
-      title: 'Limpieza y mantenimiento industrial para operaciones que no pueden fallar',
+      title: 'Limpieza industrial para operaciones que no pueden fallar',
       description:
         'Protegemos la continuidad operativa de plantas, corredores logísticos e instalaciones críticas con estándares de precisión propios de la industria aeroespacial.',
       ctaPrimary: { label: 'Conoce SINOX', href: '#nosotros' },
@@ -108,14 +108,22 @@
     restartTimer();
   }
 
-  heroEl.addEventListener('mouseenter', function () {
-    hoverPaused = true;
-    syncPausedState();
-  });
+  // Only pause on hover over the readable/interactive chrome (text panel +
+  // controls), not the full-bleed photo -- the hero fills most of the
+  // viewport, so pausing on hover anywhere in it would leave it paused
+  // for almost any visitor with a mouse resting over the page.
+  var hoverZones = [panel, heroEl.querySelector('[data-hero-controls]')].filter(Boolean);
 
-  heroEl.addEventListener('mouseleave', function () {
-    hoverPaused = false;
-    syncPausedState();
+  hoverZones.forEach(function (zone) {
+    zone.addEventListener('mouseenter', function () {
+      hoverPaused = true;
+      syncPausedState();
+    });
+
+    zone.addEventListener('mouseleave', function () {
+      hoverPaused = false;
+      syncPausedState();
+    });
   });
 
   heroEl.addEventListener('focusin', function () {

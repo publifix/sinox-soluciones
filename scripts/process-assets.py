@@ -128,7 +128,39 @@ def process_clients():
         print("client ->", dest, keyed.size, os.path.getsize(dest), "bytes")
 
 
+# ---------------------------------------------------------------------------
+# 4. Favicon / apple-touch-icon, from the official standalone isotype
+# ---------------------------------------------------------------------------
+def process_favicon():
+    src = os.path.join(ROOT, "SINOX ICONO - 1.png")
+    im = Image.open(src).convert("RGBA")
+    bbox = im.split()[-1].getbbox()
+    pad = int(max(bbox[2] - bbox[0], bbox[3] - bbox[1]) * 0.08)
+    l = max(0, bbox[0] - pad)
+    t = max(0, bbox[1] - pad)
+    r = min(im.width, bbox[2] + pad)
+    b = min(im.height, bbox[3] + pad)
+    icon = im.crop((l, t, r, b))
+
+    size = max(icon.size)
+    square = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    square.paste(icon, ((size - icon.width) // 2, (size - icon.height) // 2), icon)
+    favicon = square.resize((512, 512), Image.LANCZOS)
+
+    public_dir = os.path.join(ROOT, "public")
+    favicon.save(os.path.join(public_dir, "favicon.png"))
+
+    bg = Image.new("RGBA", (512, 512), (0, 0, 0, 255))
+    mark = favicon.resize((320, 320), Image.LANCZOS)
+    bg.paste(mark, ((512 - 320) // 2, (512 - 320) // 2), mark)
+    bg.convert("RGB").save(os.path.join(public_dir, "apple-touch-icon.png"), quality=92)
+
+    favicon.save(os.path.join(public_dir, "favicon.ico"), sizes=[(s, s) for s in (16, 32, 48, 64)])
+    print("favicon ->", public_dir, favicon.size)
+
+
 if __name__ == "__main__":
     process_logo()
     process_hero()
     process_clients()
+    process_favicon()
