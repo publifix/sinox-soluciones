@@ -2,32 +2,30 @@
   position: relative;
   overflow: hidden;
   min-height: 100svh;
+  /* Fallback only -- the video is always full-bleed, so this never
+     actually shows once the poster/video has painted. */
   background: var(--color-charcoal);
   color: var(--color-white);
 }
 
-/* ---- Video layer: framed at rest, expands to full-bleed on reveal ---- */
+/* ---- Video layer: always full-bleed (it IS the section background) --
+   it only zooms out slightly into place on reveal, it never reveals a
+   different color behind it. */
 .model__video-frame {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 html.js .model__video-frame[data-reveal] {
   opacity: 1;
-  transform: none;
-  clip-path: inset(9% round 28px);
-  transition: clip-path 1200ms var(--ease-out);
+  transform: scale(1.18);
+  transition: transform 1300ms var(--ease-out);
 }
 
 html.js .model__video-frame[data-reveal].is-revealed {
-  clip-path: inset(0% round 0px);
-}
-
-@media (max-width: 640px) {
-  html.js .model__video-frame[data-reveal] {
-    clip-path: inset(5% round 18px);
-  }
+  transform: scale(1);
 }
 
 .model__video,

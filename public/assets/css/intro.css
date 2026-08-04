@@ -71,22 +71,6 @@
   line-height: 1.04;
   letter-spacing: -0.01em;
   text-align: left;
-  cursor: default;
-
-  /* Sweep-fill hover: black -> turquoise, and back on mouseleave. */
-  color: var(--color-black);
-  background-image: linear-gradient(90deg, var(--color-turquoise) 50%, var(--color-black) 50%);
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: background-position var(--dur-slow) var(--ease-out);
-}
-
-.intro__heading:hover {
-  background-position: 0% 0;
 }
 
 @media (min-width: 768px) {
@@ -95,8 +79,25 @@
   }
 }
 
+/* Word-by-word paint: each word sits black until the heading scrolls into
+   view, then turns turquoise in sequence (via --word-index, set inline per
+   span) instead of the whole line changing at once. */
+.intro__heading-word {
+  display: inline-block;
+  color: var(--color-black);
+}
+
+html.js .intro__heading-word {
+  transition: color var(--dur-base) var(--ease-out);
+  transition-delay: calc(var(--word-index, 0) * 55ms);
+}
+
+html.js .intro__heading.is-revealed .intro__heading-word {
+  color: var(--color-turquoise);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .intro__heading {
+  html.js .intro__heading-word {
     transition: none;
   }
 }
