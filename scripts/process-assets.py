@@ -84,6 +84,7 @@ CLIENT_SOURCES = {
     "equinix": "Equinix_logo byn.jpg",
     "gerresheimer": "Gerresheimer-logo byn.jpg",
     "amway": "AMWAY.png",
+    "odata": "odata-logo.png",
 }
 
 # luminance ramp: <=OPAQUE_AT stays fully opaque, >=CLEAR_AT becomes fully transparent
