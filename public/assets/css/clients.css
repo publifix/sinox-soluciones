@@ -60,15 +60,29 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .clients__list li {
-    height: 46px;
-  }
-}
-
 .clients__list img {
   height: 100%;
   width: auto;
   max-width: clamp(96px, 14vw, 160px);
   object-fit: contain;
+}
+
+/* Desktop: keep the whole strip on a single line. The six logos have very
+   different native aspect ratios (Bombardier/Gerresheimer/ODATA are much
+   wider than Equinix/Amway), so both the slot height and each logo's own
+   max-width shrink together with viewport width to guarantee they never
+   wrap, down to the 1024px floor. */
+@media (min-width: 1024px) {
+  .clients__list {
+    flex-wrap: nowrap;
+    column-gap: clamp(1.5rem, 3vw - 0.375rem, 2.5rem);
+  }
+
+  .clients__list li {
+    height: clamp(38px, 2vw + 16px, 48px);
+  }
+
+  .clients__list img {
+    max-width: clamp(120px, 5vw + 68px, 150px);
+  }
 }
