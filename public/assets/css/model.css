@@ -1,0 +1,93 @@
+.model {
+  background: var(--color-charcoal);
+  color: var(--color-white);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .model {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.model__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .model__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.model__heading {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+.model__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .model__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+.model-card {
+  padding: var(--space-8);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--white-08);
+  border-left: 3px solid var(--turquoise-45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out);
+}
+
+.model-card:hover {
+  border-left-color: var(--color-turquoise);
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+}
+
+.model-card__title {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+  margin-bottom: var(--space-3);
+}
+
+.model-card__description {
+  font-size: 0.9375rem;
+  font-weight: var(--weight-light);
+  line-height: 1.65;
+  color: var(--white-70);
+  max-width: 42ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .model-card {
+    transition: border-color var(--dur-fast) linear, background-color var(--dur-fast) linear;
+  }
+
+  .model-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

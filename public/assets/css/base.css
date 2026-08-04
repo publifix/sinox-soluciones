@@ -105,7 +105,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-turquoise);
+  outline: 2px solid var(--focus-color);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -135,8 +135,8 @@ button {
 }
 
 .btn--primary:hover {
-  background: #04ded0;
-  border-color: #04ded0;
+  background: var(--color-turquoise-hover);
+  border-color: var(--color-turquoise-hover);
 }
 
 .btn--primary:active {
@@ -170,6 +170,66 @@ button {
   }
 
   .btn:active {
+    transform: none;
+  }
+}
+
+/* ---- Arrow link (text CTA with animated chevron) ----
+   Defaults to charcoal for use on light backgrounds (turquoise text/icons
+   fail contrast against white -- 2.1:1). Add --on-dark for dark surfaces. */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-button);
+  color: var(--color-charcoal);
+}
+
+.link-arrow__label {
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.link-arrow__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.link-arrow:hover {
+  color: var(--color-black);
+}
+
+.link-arrow:hover .link-arrow__label {
+  border-color: var(--color-turquoise);
+}
+
+.link-arrow:hover .link-arrow__icon {
+  transform: translateX(4px);
+}
+
+.link-arrow--on-dark {
+  color: var(--color-white);
+}
+
+.link-arrow--on-dark:hover {
+  color: var(--color-white);
+}
+
+.link-arrow--on-dark:hover .link-arrow__label {
+  border-color: var(--color-turquoise);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-arrow__label,
+  .link-arrow__icon {
+    transition: none;
+  }
+
+  .link-arrow:hover .link-arrow__icon {
     transform: none;
   }
 }
