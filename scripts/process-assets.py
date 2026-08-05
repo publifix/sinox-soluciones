@@ -160,8 +160,75 @@ def process_favicon():
     print("favicon ->", public_dir, favicon.size)
 
 
+# ---------------------------------------------------------------------------
+# 5. Service card photography -> center-cropped to the card's 4:5 aspect,
+#    responsive WebP srcset + single JPEG fallback (mirrors process_hero).
+# ---------------------------------------------------------------------------
+import glob
+
+SERVICE_WIDTHS = [480, 800, 1200]
+SERVICE_ASPECT = 4 / 5  # width / height, matches .service-card { aspect-ratio }
+
+SERVICE_PREFIX_TO_SLUG = {
+    "1": "servicio-limpieza-industrial",
+    "2": "servicio-limpieza-data-centers",
+    "3": "servicio-limpieza-aeroespacial",
+    "4": "servicio-mantenimiento-industrial",
+    "5": "servicio-fumigacion-control-plagas",
+    "6": "servicio-jardineria-industrial-corporativa",
+}
+
+
+def process_services():
+    # Matched by leading digit rather than the full accented filename --
+    # GitHub's web upload normalizes accents (NFD) in a way that doesn't
+    # always match a hardcoded literal from an editor (NFC), so glob by
+    # prefix and confirm all six were found.
+    sources = {}
+    for path in glob.glob(os.path.join(ROOT, "*.jpg")):
+        filename = os.path.basename(path)
+        prefix = filename[0]
+        if prefix in SERVICE_PREFIX_TO_SLUG and prefix not in sources:
+            sources[prefix] = path
+
+    missing = set(SERVICE_PREFIX_TO_SLUG) - set(sources)
+    if missing:
+        print("process_services: skipping, missing source photos for:", missing)
+        return
+
+    for prefix, slug in SERVICE_PREFIX_TO_SLUG.items():
+        im = Image.open(sources[prefix])
+        im = ImageOps.exif_transpose(im).convert("RGB")
+
+        w, h = im.size
+        current_ratio = w / h
+        if current_ratio > SERVICE_ASPECT:
+            new_w = int(h * SERVICE_ASPECT)
+            left = (w - new_w) // 2
+            im = im.crop((left, 0, left + new_w, h))
+        else:
+            new_h = int(w / SERVICE_ASPECT)
+            top = (h - new_h) // 2
+            im = im.crop((0, top, w, top + new_h))
+
+        for width in SERVICE_WIDTHS:
+            height = round(width / SERVICE_ASPECT)
+            resized = im.resize((width, height), Image.LANCZOS)
+            dest = out("services", f"{slug}-{width}.webp")
+            resized.save(dest, "WEBP", quality=78, method=6)
+            print("service ->", dest, resized.size, os.path.getsize(dest), "bytes")
+
+        fb_w = 800
+        fb_h = round(fb_w / SERVICE_ASPECT)
+        fallback = im.resize((fb_w, fb_h), Image.LANCZOS)
+        dest = out("services", f"{slug}-{fb_w}.jpg")
+        fallback.save(dest, "JPEG", quality=80, optimize=True, progressive=True)
+        print("service fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
+
+
 if __name__ == "__main__":
     process_logo()
     process_hero()
     process_clients()
     process_favicon()
+    process_services()

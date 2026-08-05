@@ -88,12 +88,20 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* Duotone charcoal/black placeholder -- swap for real photography via the
-     background-image on this element once assets exist; layout is unaffected. */
+  overflow: hidden;
+  /* Duotone charcoal/black fallback -- shows while the photo loads (or if it
+     fails), and behind the transparent edges of object-fit: cover. */
   background: radial-gradient(120% 120% at 18% 12%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 45%),
     linear-gradient(160deg, var(--color-charcoal) 0%, var(--color-black) 100%);
-  background-size: cover;
-  background-position: center;
+}
+
+.service-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   filter: blur(4px);
   transform: scale(1.08);
   transition: filter var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
@@ -176,8 +184,8 @@
 
 /* ---- Revealed state: keyboard focus + touch tap-toggle (always available),
    plus true mouse hover (scoped so touch devices never get a stuck hover). ---- */
-.service-card:focus-visible .service-card__media,
-.service-card.is-active .service-card__media {
+.service-card:focus-visible .service-card__img,
+.service-card.is-active .service-card__img {
   filter: blur(0);
   transform: scale(1);
 }
@@ -202,7 +210,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .service-card:hover .service-card__media {
+  .service-card:hover .service-card__img {
     filter: blur(0);
     transform: scale(1);
   }
@@ -225,7 +233,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .service-card__media,
+  .service-card__img,
   .service-card__scrim,
   .service-card__title,
   .service-card__reveal,
