@@ -229,9 +229,44 @@ def process_services():
         print("service fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
 
 
+# ---------------------------------------------------------------------------
+# 6. Testimonials section background -> full-bleed responsive WebP srcset +
+#    single JPEG fallback (mirrors process_hero).
+# ---------------------------------------------------------------------------
+TESTIMONIALS_WIDTHS = [640, 1080, 1600, 2200]
+
+
+def process_testimonials():
+    matches = glob.glob(os.path.join(ROOT, "HERO-RESE*.jpg")) + glob.glob(os.path.join(ROOT, "hero-rese*.jpg"))
+    if not matches:
+        print("process_testimonials: skipping, source photo not found")
+        return
+    src = matches[0]
+    im = Image.open(src)
+    im = ImageOps.exif_transpose(im).convert("RGB")
+
+    for w in TESTIMONIALS_WIDTHS:
+        if w >= im.width:
+            resized = im.copy()
+        else:
+            ratio = w / im.width
+            resized = im.resize((w, round(im.height * ratio)), Image.LANCZOS)
+        dest = out("testimonials", f"resenas-bg-{w}.webp")
+        resized.save(dest, "WEBP", quality=76, method=6)
+        print("testimonials ->", dest, resized.size, os.path.getsize(dest), "bytes")
+
+    fb_w = 1600
+    ratio = fb_w / im.width
+    fallback = im.resize((fb_w, round(im.height * ratio)), Image.LANCZOS)
+    dest = out("testimonials", f"resenas-bg-{fb_w}.jpg")
+    fallback.save(dest, "JPEG", quality=78, optimize=True, progressive=True)
+    print("testimonials fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
+
+
 if __name__ == "__main__":
     process_logo()
     process_hero()
     process_clients()
     process_favicon()
     process_services()
+    process_testimonials()

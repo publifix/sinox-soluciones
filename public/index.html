@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="assets/css/intro.css" />
 <link rel="stylesheet" href="assets/css/model.css" />
 <link rel="stylesheet" href="assets/css/services.css" />
+<link rel="stylesheet" href="assets/css/testimonials.css" />
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
@@ -716,6 +717,206 @@
       </div>
     </div>
   </section>
+
+  <section class="testimonials" id="testimonios" aria-labelledby="testimonials-heading" data-testimonials>
+    <div class="testimonials__media">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="assets/img/testimonials/resenas-bg-640.webp 640w, assets/img/testimonials/resenas-bg-1080.webp 1080w, assets/img/testimonials/resenas-bg-1600.webp 1600w, assets/img/testimonials/resenas-bg-2200.webp 2200w"
+          sizes="100vw"
+        />
+        <img
+          class="testimonials__img"
+          src="assets/img/testimonials/resenas-bg-1600.jpg"
+          alt=""
+          width="1600"
+          height="1067"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="testimonials__scrim"></div>
+    </div>
+
+    <div class="testimonials__inner">
+      <div class="testimonials__header" data-reveal>
+        <h2 class="testimonials__heading" id="testimonials-heading">La industria que confía en SINOX</h2>
+        <p class="testimonials__subtitle">Testimonios reales de quienes ya trabajan con nosotros</p>
+      </div>
+
+      <div
+        class="testimonials__carousel"
+        data-reveal
+        role="region"
+        aria-roledescription="carrusel"
+        aria-label="Testimonios de clientes"
+      >
+        <button class="testimonials__arrow testimonials__arrow--prev" type="button" aria-label="Testimonio anterior" data-carousel-prev>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <ul class="testimonials__track" data-carousel-track>
+          <li class="testimonials__spacer" aria-hidden="true"></li>
+
+          <li
+            class="testimonial-card"
+            data-carousel-slide
+            role="group"
+            aria-roledescription="testimonio"
+            aria-label="Testimonio 1 de 5"
+          >
+            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="testimonial-card__quote">
+              <p>
+                SINOX ha transformado nuestras instalaciones. Su equipo es altamente profesional y los resultados
+                son impecables. La atención al detalle es excepcional.
+              </p>
+            </blockquote>
+            <div class="testimonial-card__author">
+              <span class="testimonial-card__avatar" aria-hidden="true">CH</span>
+              <div class="testimonial-card__meta">
+                <p class="testimonial-card__name">Carlos Hernández</p>
+                <p class="testimonial-card__role">Director de Operaciones</p>
+                <p class="testimonial-card__company">Bombardier</p>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="testimonial-card"
+            data-carousel-slide
+            role="group"
+            aria-roledescription="testimonio"
+            aria-label="Testimonio 2 de 5"
+          >
+            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="testimonial-card__quote">
+              <p>
+                Excelente servicio de limpieza para nuestros data centers. El personal está altamente capacitado y
+                entienden las necesidades específicas de nuestro sector.
+              </p>
+            </blockquote>
+            <div class="testimonial-card__author">
+              <span class="testimonial-card__avatar" aria-hidden="true">MG</span>
+              <div class="testimonial-card__meta">
+                <p class="testimonial-card__name">María González</p>
+                <p class="testimonial-card__role">Gerente de Facilities</p>
+                <p class="testimonial-card__company">Equinix</p>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="testimonial-card"
+            data-carousel-slide
+            role="group"
+            aria-roledescription="testimonio"
+            aria-label="Testimonio 3 de 5"
+          >
+            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="testimonial-card__quote">
+              <p>
+                La fumigación y control de plagas ha sido extraordinaria. Cumplimiento total con las normativas y
+                un seguimiento constante. Muy recomendables.
+              </p>
+            </blockquote>
+            <div class="testimonial-card__author">
+              <span class="testimonial-card__avatar" aria-hidden="true">RS</span>
+              <div class="testimonial-card__meta">
+                <p class="testimonial-card__name">Roberto Silva</p>
+                <p class="testimonial-card__role">Jefe de Mantenimiento</p>
+                <p class="testimonial-card__company">Gerresheimer</p>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="testimonial-card"
+            data-carousel-slide
+            role="group"
+            aria-roledescription="testimonio"
+            aria-label="Testimonio 4 de 5"
+          >
+            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="testimonial-card__quote">
+              <p>
+                Llevamos más de 2 años trabajando con SINOX y no podríamos estar más satisfechos. Su compromiso
+                con la calidad es evidente en cada servicio.
+              </p>
+            </blockquote>
+            <div class="testimonial-card__author">
+              <span class="testimonial-card__avatar" aria-hidden="true">AM</span>
+              <div class="testimonial-card__meta">
+                <p class="testimonial-card__name">Ana Martínez</p>
+                <p class="testimonial-card__role">Coordinadora de Servicios</p>
+                <p class="testimonial-card__company">Airbus</p>
+              </div>
+            </div>
+          </li>
+
+          <li
+            class="testimonial-card"
+            data-carousel-slide
+            role="group"
+            aria-roledescription="testimonio"
+            aria-label="Testimonio 5 de 5"
+          >
+            <span class="testimonial-card__quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="testimonial-card__quote">
+              <p>
+                El servicio de jardinería industrial y mantenimiento de áreas verdes es impecable. Han mejorado
+                significativamente la imagen de nuestra planta.
+              </p>
+            </blockquote>
+            <div class="testimonial-card__author">
+              <span class="testimonial-card__avatar" aria-hidden="true">LR</span>
+              <div class="testimonial-card__meta">
+                <p class="testimonial-card__name">Luis Ramírez</p>
+                <p class="testimonial-card__role">Director de Planta</p>
+                <p class="testimonial-card__company">Amway</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="testimonials__spacer" aria-hidden="true"></li>
+        </ul>
+
+        <button class="testimonials__arrow testimonials__arrow--next" type="button" aria-label="Siguiente testimonio" data-carousel-next>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="testimonials__dots" role="group" aria-label="Seleccionar testimonio">
+        <button class="testimonials__dot" type="button" data-carousel-dot data-index="0">
+          <span class="testimonials__dot-track"><span class="testimonials__dot-progress"></span></span>
+          <span class="visually-hidden">Testimonio 1: Carlos Hernández, Bombardier</span>
+        </button>
+        <button class="testimonials__dot" type="button" data-carousel-dot data-index="1">
+          <span class="testimonials__dot-track"><span class="testimonials__dot-progress"></span></span>
+          <span class="visually-hidden">Testimonio 2: María González, Equinix</span>
+        </button>
+        <button class="testimonials__dot" type="button" data-carousel-dot data-index="2">
+          <span class="testimonials__dot-track"><span class="testimonials__dot-progress"></span></span>
+          <span class="visually-hidden">Testimonio 3: Roberto Silva, Gerresheimer</span>
+        </button>
+        <button class="testimonials__dot" type="button" data-carousel-dot data-index="3">
+          <span class="testimonials__dot-track"><span class="testimonials__dot-progress"></span></span>
+          <span class="visually-hidden">Testimonio 4: Ana Martínez, Airbus</span>
+        </button>
+        <button class="testimonials__dot" type="button" data-carousel-dot data-index="4">
+          <span class="testimonials__dot-track"><span class="testimonials__dot-progress"></span></span>
+          <span class="visually-hidden">Testimonio 5: Luis Ramírez, Amway</span>
+        </button>
+      </div>
+
+      <p class="visually-hidden" aria-live="polite" data-carousel-status></p>
+    </div>
+  </section>
 </main>
 
 <script src="assets/js/header.js" defer></script>
@@ -723,5 +924,6 @@
 <script src="assets/js/scroll-reveal.js" defer></script>
 <script src="assets/js/model-video.js" defer></script>
 <script src="assets/js/service-cards.js" defer></script>
+<script src="assets/js/testimonials.js" defer></script>
 </body>
 </html>

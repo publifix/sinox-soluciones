@@ -1,0 +1,336 @@
+.testimonials {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ---- Background photo + scrim (same rgba(0,0,0,X) family as Hero/Modelo) ---- */
+.testimonials__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.testimonials__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.testimonials__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.5) 42%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* ---- Content ---- */
+.testimonials__inner {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  padding-block: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .testimonials__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.testimonials__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 44rem;
+}
+
+.testimonials__heading {
+  font-size: var(--text-display);
+  font-weight: var(--weight-bold);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+.testimonials__subtitle {
+  font-size: var(--text-body);
+  font-weight: var(--weight-light);
+  color: var(--white-85);
+}
+
+/* ---- Carousel shell ---- */
+.testimonials__carousel {
+  position: relative;
+}
+
+.testimonials__track {
+  display: flex;
+  gap: var(--space-6);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-block: var(--space-2);
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Peek amount, as a share of the track's own (unpadded) width. Used by
+     both the card width and the spacer width below so they always sum to
+     100% -- padding-inline here would double-shrink the percentage math
+     (padding % of the container, then flex-basis % of that already-shrunk
+     width), rendering cards far narrower than intended. */
+  --tcard-w: 84%;
+}
+
+.testimonials__track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+@media (min-width: 640px) {
+  .testimonials__track {
+    --tcard-w: 64%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonials__track {
+    --tcard-w: 46%;
+  }
+}
+
+.testimonials__spacer {
+  flex: 0 0 calc((100% - var(--tcard-w)) / 2);
+  list-style: none;
+}
+
+/* ---- Card (same translucent glass treatment as .model-card) ---- */
+.testimonial-card {
+  flex: 0 0 var(--tcard-w);
+  scroll-snap-align: center;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  border-radius: var(--radius-md);
+  background: var(--white-08);
+  border: 1px solid var(--white-14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .testimonial-card {
+    flex-basis: 64%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-card {
+    flex-basis: 46%;
+    padding: var(--space-10);
+  }
+}
+
+.testimonial-card__quote-mark {
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: var(--weight-bold);
+  color: var(--turquoise-45);
+}
+
+.testimonial-card__quote {
+  margin: 0;
+}
+
+.testimonial-card__quote p {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-light);
+  line-height: 1.55;
+  color: var(--color-white);
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: auto;
+}
+
+.testimonial-card__avatar {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-pill);
+  background: var(--color-charcoal);
+  border: 1.5px solid var(--color-turquoise);
+  color: var(--color-white);
+  font-weight: var(--weight-bold);
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+}
+
+.testimonial-card__meta {
+  min-width: 0;
+}
+
+.testimonial-card__name {
+  font-weight: var(--weight-bold);
+  font-size: 1rem;
+  color: var(--color-white);
+}
+
+.testimonial-card__role {
+  font-weight: var(--weight-regular);
+  font-size: 0.875rem;
+  color: var(--white-70);
+}
+
+.testimonial-card__company {
+  font-weight: var(--weight-regular);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-turquoise);
+  margin-top: var(--space-1);
+}
+
+/* ---- Arrows ---- */
+.testimonials__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--white-30);
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--color-white);
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.testimonials__arrow:hover {
+  border-color: var(--color-white);
+  background: var(--white-08);
+}
+
+.testimonials__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.testimonials__arrow--prev {
+  left: 0;
+}
+
+.testimonials__arrow--next {
+  right: 0;
+}
+
+@media (min-width: 1024px) {
+  .testimonials__arrow {
+    width: 48px;
+    height: 48px;
+  }
+
+  .testimonials__arrow--prev {
+    left: var(--space-2);
+  }
+
+  .testimonials__arrow--next {
+    right: var(--space-2);
+  }
+}
+
+/* ---- Dots (progress-fill technique mirrors .hero__dot) ---- */
+.testimonials__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.testimonials__dot {
+  position: relative;
+  width: 44px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.testimonials__dot-track {
+  position: relative;
+  width: 30px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--white-30);
+  overflow: hidden;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.testimonials__dot:hover .testimonials__dot-track {
+  background: var(--white-70);
+}
+
+.testimonials__dot-progress {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--color-turquoise);
+}
+
+.testimonials__dot.is-active .testimonials__dot-progress {
+  animation: testimonialsDotProgress var(--hero-interval) linear forwards;
+}
+
+.testimonials.is-paused .testimonials__dot.is-active .testimonials__dot-progress {
+  animation-play-state: paused;
+}
+
+@keyframes testimonialsDotProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials__track {
+    scroll-behavior: auto;
+  }
+
+  .testimonials__dot.is-active .testimonials__dot-progress {
+    animation: none;
+    transform: scaleX(0);
+  }
+}
