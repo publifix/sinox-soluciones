@@ -25,6 +25,12 @@ html.js [data-reveal-stagger] > *:nth-child(3) {
 html.js [data-reveal-stagger] > *:nth-child(4) {
   transition-delay: 240ms;
 }
+html.js [data-reveal-stagger] > *:nth-child(5) {
+  transition-delay: 320ms;
+}
+html.js [data-reveal-stagger] > *:nth-child(6) {
+  transition-delay: 400ms;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal] {

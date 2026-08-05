@@ -1,0 +1,235 @@
+.services {
+  --focus-color: var(--color-charcoal);
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .services {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.services__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+@media (min-width: 1024px) {
+  .services__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-16);
+  }
+}
+
+/* ---- Header ---- */
+.services__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 50rem;
+}
+
+.services__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: var(--color-charcoal);
+}
+
+.services__subtitle {
+  font-size: var(--text-body);
+  font-weight: var(--weight-light);
+  line-height: 1.6;
+  color: var(--color-charcoal);
+  opacity: 0.7;
+  max-width: 48ch;
+}
+
+/* ---- Grid ---- */
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* ---- Card ---- */
+.service-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  aspect-ratio: 4 / 5;
+  isolation: isolate;
+}
+
+.service-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Duotone charcoal/black placeholder -- swap for real photography via the
+     background-image on this element once assets exist; layout is unaffected. */
+  background: radial-gradient(120% 120% at 18% 12%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 45%),
+    linear-gradient(160deg, var(--color-charcoal) 0%, var(--color-black) 100%);
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  transform: scale(1.08);
+  transition: filter var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.service-card__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.75) 100%);
+  transition: background var(--dur-slow) var(--ease-out);
+}
+
+.service-card__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6);
+}
+
+.service-card__title {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.service-card__reveal {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  transform: translateY(10px);
+  transition: max-height var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+  transition-delay: 0ms;
+}
+
+.service-card__description {
+  padding-top: var(--space-3);
+  font-size: 0.9375rem;
+  font-weight: var(--weight-light);
+  line-height: 1.5;
+  color: var(--white-85);
+  max-width: 34ch;
+}
+
+.service-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  background: transparent;
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+
+/* The button tints independently of the choreographed card reveal -- it
+   only reacts to being hovered directly, not to the card's own hover. */
+@media (hover: hover) and (pointer: fine) {
+  .service-card__cta:hover {
+    border-color: var(--color-turquoise);
+    color: var(--color-turquoise);
+  }
+}
+
+/* ---- Revealed state: keyboard focus + touch tap-toggle (always available),
+   plus true mouse hover (scoped so touch devices never get a stuck hover). ---- */
+.service-card:focus-visible .service-card__media,
+.service-card.is-active .service-card__media {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.service-card:focus-visible .service-card__scrim,
+.service-card.is-active .service-card__scrim {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.18) 40%, rgba(0, 0, 0, 0.82) 100%);
+}
+
+.service-card:focus-visible .service-card__title,
+.service-card.is-active .service-card__title {
+  transform: translateY(-4px);
+}
+
+.service-card:focus-visible .service-card__reveal,
+.service-card.is-active .service-card__reveal {
+  max-height: 160px;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 120ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover .service-card__media {
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  .service-card:hover .service-card__scrim {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.18) 40%, rgba(0, 0, 0, 0.82) 100%);
+  }
+
+  .service-card:hover .service-card__title {
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover .service-card__reveal {
+    max-height: 160px;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: 120ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card__media,
+  .service-card__scrim,
+  .service-card__title,
+  .service-card__reveal,
+  .service-card__cta {
+    transition: none;
+  }
+}
