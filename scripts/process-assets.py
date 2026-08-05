@@ -176,6 +176,9 @@ SERVICE_PREFIX_TO_SLUG = {
     "4": "servicio-mantenimiento-industrial",
     "5": "servicio-fumigacion-control-plagas",
     "6": "servicio-jardineria-industrial-corporativa",
+    "7": "servicio-mantenimiento-integral-oficinas",
+    "8": "servicio-comercializadora-insumos",
+    "9": "servicio-lavado-tapiceria",
 }
 
 
