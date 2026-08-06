@@ -1,0 +1,69 @@
+.whatsapp-float {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: var(--z-whatsapp-float);
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background: var(--color-turquoise);
+  color: var(--color-charcoal);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.whatsapp-float:hover {
+  background: var(--color-turquoise-hover);
+  transform: translateY(-2px);
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Slow, subtle pulse ring -- sits behind the button within its own
+   stacking context (z-index only needs to beat the button's own content). */
+.whatsapp-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--color-turquoise);
+  animation: whatsappPulse 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .whatsapp-float {
+    right: var(--space-4);
+    bottom: var(--space-4);
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float {
+    transition: none;
+  }
+
+  .whatsapp-float::before {
+    animation: none;
+    display: none;
+  }
+}
