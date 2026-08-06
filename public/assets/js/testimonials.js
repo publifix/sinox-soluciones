@@ -63,13 +63,21 @@
     }
   }
 
+  // Scrolls only the track's own horizontal position -- never the page.
+  // scrollIntoView({block:'nearest'}) looked equivalent but isn't: if the
+  // section is only partially visible vertically (e.g. the user is mid-scroll
+  // past it when autoplay fires), "nearest" also drags the whole page down
+  // to bring the slide fully into view, causing a jarring vertical jump.
+  function scrollToSlide(slide, behavior) {
+    var trackRect = track.getBoundingClientRect();
+    var slideRect = slide.getBoundingClientRect();
+    var delta = slideRect.left + slideRect.width / 2 - (trackRect.left + trackRect.width / 2);
+    track.scrollTo({ left: track.scrollLeft + delta, behavior: behavior });
+  }
+
   function goTo(i) {
     var normalized = ((i % slides.length) + slides.length) % slides.length;
-    slides[normalized].scrollIntoView({
-      behavior: reduceMotion ? 'auto' : 'smooth',
-      inline: 'center',
-      block: 'nearest',
-    });
+    scrollToSlide(slides[normalized], reduceMotion ? 'auto' : 'smooth');
     setActiveIndex(normalized);
   }
 
