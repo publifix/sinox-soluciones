@@ -1,0 +1,530 @@
+/* Shared layout/animation styles for internal service pages (Limpieza
+   Industrial and, in a future phase, the other 8 service lines). Content
+   is supplied per-page in the HTML; this file only owns structure, motion,
+   and the visual system -- never copy/adapt it per service, extend it. */
+
+/* ---- Duotone placeholder, reused wherever a photo hasn't landed yet ---- */
+.placeholder-media {
+  background: radial-gradient(120% 120% at 18% 12%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 45%),
+    linear-gradient(160deg, var(--color-charcoal) 0%, var(--color-black) 100%);
+}
+
+/* ==========================================================================
+   Service hero
+   ========================================================================== */
+.service-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.service-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.service-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.service-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.4) 45%, rgba(0, 0, 0, 0.88) 100%);
+}
+
+.service-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  padding-block: calc(var(--header-height) + var(--space-8)) var(--space-16);
+}
+
+@media (min-width: 1024px) {
+  .service-hero__inner {
+    padding-inline: var(--space-10);
+    padding-block: calc(var(--header-height) + var(--space-10)) var(--space-20);
+  }
+}
+
+.service-hero__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: var(--weight-regular);
+  color: var(--white-70);
+}
+
+.service-hero__breadcrumb a {
+  color: var(--white-70);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.service-hero__breadcrumb a:hover {
+  color: var(--color-turquoise);
+}
+
+.service-hero__breadcrumb-sep {
+  color: var(--white-40);
+}
+
+.service-hero__breadcrumb-current {
+  color: var(--color-white);
+}
+
+.service-hero__content {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 46rem;
+}
+
+.service-hero__kicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-light);
+  line-height: 1.5;
+  color: var(--white-85);
+}
+
+.service-hero__title {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-hero__breadcrumb a {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Narrative -- sticky horizontal scroll on desktop, native swipe on mobile
+   ========================================================================== */
+.narrative {
+  position: relative;
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.narrative__sticky {
+  position: relative;
+  overflow: hidden;
+}
+
+.narrative__track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.narrative__track::-webkit-scrollbar {
+  display: none;
+}
+
+.narrative__panel {
+  flex: 0 0 100%;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+/* Desktop scroll-jack mode, applied by service-page.js only when the
+   viewport is wide enough and the user hasn't asked for reduced motion. */
+@media (min-width: 900px) {
+  .narrative.is-scrolljacked .narrative__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+  }
+
+  .narrative.is-scrolljacked .narrative__track {
+    overflow: visible;
+    scroll-snap-type: none;
+    will-change: transform;
+  }
+}
+
+.narrative__panel--a {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .narrative__panel--a {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.narrative__media {
+  position: relative;
+  min-height: 340px;
+}
+
+.narrative__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-10) var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .narrative__content {
+    padding: var(--space-16) var(--space-10);
+  }
+}
+
+.narrative__lead {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-light);
+  line-height: 1.3;
+  color: var(--color-white);
+  max-width: 32ch;
+}
+
+.narrative__body {
+  font-size: var(--text-body);
+  font-weight: var(--weight-light);
+  line-height: 1.65;
+  color: var(--white-70);
+  max-width: 46ch;
+}
+
+.narrative__panel-inner {
+  max-width: 40rem;
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .narrative__panel-inner {
+    padding-inline: var(--space-10);
+  }
+}
+
+.narrative__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.narrative__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.narrative__list li {
+  font-size: var(--text-body);
+  font-weight: var(--weight-light);
+  line-height: 1.6;
+  color: var(--white-85);
+}
+
+/* ==========================================================================
+   Highlights carousel
+   ========================================================================== */
+.highlights {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .highlights {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.highlights__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .highlights__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.highlights__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.highlights__track {
+  display: flex;
+  gap: var(--space-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-block: var(--space-2);
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.highlights__track::-webkit-scrollbar {
+  display: none;
+}
+
+.highlights__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.highlight-card {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--white-08);
+  border: 1px solid var(--white-14);
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .highlight-card {
+    flex-basis: 45%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .highlight-card {
+    flex-basis: 23%;
+  }
+}
+
+.highlight-card__index {
+  font-size: 2.25rem;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--color-turquoise);
+}
+
+.highlight-card__title {
+  font-size: 1.125rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+}
+
+.highlight-card__description {
+  font-size: 0.9375rem;
+  font-weight: var(--weight-light);
+  line-height: 1.55;
+  color: var(--white-70);
+}
+
+/* ==========================================================================
+   Benefits -- reuses .model-card / .model-card__title / .model-card__description
+   from model.css for the card visual; this file only owns the section shell.
+   ========================================================================== */
+.benefits {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .benefits {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.benefits__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .benefits__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.benefits__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.benefits__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .benefits__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* ==========================================================================
+   Related services carousel
+   ========================================================================== */
+.related-services {
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .related-services {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.related-services__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .related-services__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.related-services__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--color-charcoal);
+}
+
+.related-services__track {
+  display: flex;
+  gap: var(--space-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-block: var(--space-2);
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.related-services__track::-webkit-scrollbar {
+  display: none;
+}
+
+.related-services__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.related-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  aspect-ratio: 4 / 5;
+  flex: 0 0 68%;
+  scroll-snap-align: start;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .related-card {
+    flex-basis: 42%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .related-card {
+    flex-basis: 26%;
+  }
+}
+
+.related-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .related-card:hover .related-card__img {
+    transform: scale(1.06);
+  }
+}
+
+.related-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.related-card__title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-5);
+  font-size: 1rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .related-card__img {
+    transition: none;
+  }
+}
