@@ -126,8 +126,23 @@
     <div class="narrative__sticky" data-narrative-sticky>
       <div class="narrative__track" data-narrative-track>
         <div class="narrative__panel narrative__panel--a">
-          <!-- Placeholder duotone; swap for assets/img/services/limpieza-aeroespacial-secundaria.jpg when available -->
-          <div class="narrative__media placeholder-media" data-image="limpieza-aeroespacial-secundaria"></div>
+          <div class="narrative__media placeholder-media" data-image="limpieza-aeroespacial-secundaria">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/img/services/limpieza-aeroespacial-secundaria-480.webp 480w, assets/img/services/limpieza-aeroespacial-secundaria-800.webp 800w, assets/img/services/limpieza-aeroespacial-secundaria-1200.webp 1200w"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+              <img
+                src="assets/img/services/limpieza-aeroespacial-secundaria-800.jpg"
+                alt=""
+                width="800"
+                height="449"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
           <div class="narrative__content">
             <p class="narrative__lead">
               En una planta de manufactura aeroespacial, un protocolo de limpieza mal ejecutado puede comprometer
