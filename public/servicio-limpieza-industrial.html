@@ -83,8 +83,25 @@
 <main id="main">
   <section class="service-hero" aria-labelledby="service-hero-title">
     <div class="service-hero__media">
-      <!-- Placeholder duotone; swap for assets/img/services/servicio-limpieza-industrial-hero.jpg when available -->
-      <div class="service-hero__image placeholder-media" data-image="servicio-limpieza-industrial-hero"></div>
+      <!-- Reusing the Servicios grid photo for now; swap for dedicated hero photography later if provided -->
+      <div class="service-hero__image" data-image="servicio-limpieza-industrial-hero">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/img/services/servicio-limpieza-industrial-480.webp 480w, assets/img/services/servicio-limpieza-industrial-800.webp 800w, assets/img/services/servicio-limpieza-industrial-1200.webp 1200w"
+            sizes="100vw"
+          />
+          <img
+            src="assets/img/services/servicio-limpieza-industrial-800.jpg"
+            alt=""
+            width="800"
+            height="1000"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+      </div>
       <div class="service-hero__scrim"></div>
     </div>
 
