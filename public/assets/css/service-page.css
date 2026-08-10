@@ -193,6 +193,16 @@
 .narrative__media {
   position: relative;
   min-height: 340px;
+  overflow: hidden;
+}
+
+.narrative__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .narrative__content {

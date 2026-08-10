@@ -126,8 +126,23 @@
     <div class="narrative__sticky" data-narrative-sticky>
       <div class="narrative__track" data-narrative-track>
         <div class="narrative__panel narrative__panel--a">
-          <!-- Placeholder duotone; swap for assets/img/services/servicio-limpieza-industrial-narrativa.jpg when available -->
-          <div class="narrative__media placeholder-media" data-image="servicio-limpieza-industrial-narrativa"></div>
+          <div class="narrative__media placeholder-media" data-image="servicio-limpieza-industrial-narrativa">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/img/services/servicio-limpieza-industrial-narrativa-480.webp 480w, assets/img/services/servicio-limpieza-industrial-narrativa-800.webp 800w, assets/img/services/servicio-limpieza-industrial-narrativa-1200.webp 1200w"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+              <img
+                src="assets/img/services/servicio-limpieza-industrial-narrativa-800.jpg"
+                alt=""
+                width="800"
+                height="459"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
           <div class="narrative__content">
             <p class="narrative__lead">
               La limpieza industrial es un factor crítico para la continuidad operativa, la seguridad y el

@@ -263,6 +263,45 @@ def process_testimonials():
     print("testimonials fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
 
 
+# ---------------------------------------------------------------------------
+# 7. Narrative panel photo (service pages) -- full-bleed, no forced aspect
+#    crop since the panel's on-screen aspect varies with viewport; object-fit:
+#    cover in CSS handles cropping at render time. Mirrors process_hero.
+# ---------------------------------------------------------------------------
+NARRATIVE_WIDTHS = [480, 800, 1200]
+
+NARRATIVE_SOURCES = {
+    "servicio-limpieza-industrial-narrativa": "limpieza-industrial-inerna.jpg",
+}
+
+
+def process_narrative():
+    for slug, filename in NARRATIVE_SOURCES.items():
+        src = os.path.join(ROOT, filename)
+        if not os.path.exists(src):
+            print("process_narrative: skipping, source not found:", filename)
+            continue
+        im = Image.open(src)
+        im = ImageOps.exif_transpose(im).convert("RGB")
+
+        for w in NARRATIVE_WIDTHS:
+            if w >= im.width:
+                resized = im.copy()
+            else:
+                ratio = w / im.width
+                resized = im.resize((w, round(im.height * ratio)), Image.LANCZOS)
+            dest = out("services", f"{slug}-{w}.webp")
+            resized.save(dest, "WEBP", quality=78, method=6)
+            print("narrative ->", dest, resized.size, os.path.getsize(dest), "bytes")
+
+        fb_w = 800
+        ratio = fb_w / im.width
+        fallback = im.resize((fb_w, round(im.height * ratio)), Image.LANCZOS)
+        dest = out("services", f"{slug}-{fb_w}.jpg")
+        fallback.save(dest, "JPEG", quality=80, optimize=True, progressive=True)
+        print("narrative fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
+
+
 if __name__ == "__main__":
     process_logo()
     process_hero()
@@ -270,3 +309,4 @@ if __name__ == "__main__":
     process_favicon()
     process_services()
     process_testimonials()
+    process_narrative()
