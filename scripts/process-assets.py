@@ -279,6 +279,7 @@ NARRATIVE_SOURCES = {
     "jardineria-industrial-corporativa-secundaria": "jaridneria-industrial-corporativa-secundaria.jpg",
     "mantenimiento-integral-oficinas-secundaria": "mantenimeinto-integgral-oficinas-secundaria.jpg",
     "comercializadora-insumos-secundaria": "comercializadora-de-insumos-secundaria.jpg",
+    "lavado-tapiceria-secundaria": "lavado-tapiceri*a-secundaria.jpg",
 }
 
 
