@@ -80,6 +80,14 @@
   right: 0;
 }
 
+.site-nav__list a[aria-current="page"] {
+  color: var(--color-white);
+}
+
+.site-nav__list a[aria-current="page"]::after {
+  right: 0;
+}
+
 .site-header__cta {
   display: none;
 }
@@ -194,6 +202,10 @@
 
 .mobile-nav__inner a:hover,
 .mobile-nav__inner a:focus-visible {
+  color: var(--color-white);
+}
+
+.mobile-nav__inner a[aria-current="page"] {
   color: var(--color-white);
 }
 
