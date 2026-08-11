@@ -276,6 +276,7 @@ NARRATIVE_SOURCES = {
     "limpieza-aeroespacial-secundaria": "limpieza-aeroespacial-secundaria .jpg",
     "mantenimiento-industrial-secundaria": "mantenimiento-industrial-secundaria.jpg",
     "fumigacion-control-plagas-secundaria": "fumigaci*n-y-control-de-plagas.jpg",
+    "jardineria-industrial-corporativa-secundaria": "jaridneria-industrial-corporativa-secundaria.jpg",
 }
 
 
