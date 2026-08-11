@@ -2,31 +2,52 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- Generic pointer drag-to-scroll for horizontal carousels. Touch
-     already scrolls natively via overflow-x, so this only binds mouse. ---- */
+     already scrolls natively via overflow-x, so this only binds mouse.
+     Pointer capture is only claimed once real movement crosses a small
+     threshold -- claiming it unconditionally on pointerdown causes Chromium
+     to retarget the subsequent click to the capturing track element instead
+     of the link under the cursor, silently breaking plain clicks on cards. ---- */
   function enableDragScroll(track) {
     if (!track) return;
+    var DRAG_THRESHOLD = 6;
     var isDown = false;
+    var dragging = false;
     var startX = 0;
     var startScroll = 0;
+    var pointerId = null;
 
     track.addEventListener('pointerdown', function (event) {
       if (event.pointerType !== 'mouse') return;
       isDown = true;
+      dragging = false;
       startX = event.clientX;
       startScroll = track.scrollLeft;
-      track.classList.add('is-dragging');
-      track.setPointerCapture(event.pointerId);
+      pointerId = event.pointerId;
     });
 
     track.addEventListener('pointermove', function (event) {
       if (!isDown) return;
-      track.scrollLeft = startScroll - (event.clientX - startX);
+      var delta = event.clientX - startX;
+      if (!dragging && Math.abs(delta) > DRAG_THRESHOLD) {
+        dragging = true;
+        track.classList.add('is-dragging');
+        track.setPointerCapture(pointerId);
+      }
+      if (dragging) {
+        track.scrollLeft = startScroll - delta;
+      }
     });
 
     function endDrag() {
       if (!isDown) return;
       isDown = false;
-      track.classList.remove('is-dragging');
+      if (dragging) {
+        track.classList.remove('is-dragging');
+        if (track.hasPointerCapture(pointerId)) {
+          track.releasePointerCapture(pointerId);
+        }
+      }
+      dragging = false;
     }
 
     track.addEventListener('pointerup', endDrag);
