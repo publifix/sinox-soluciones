@@ -278,6 +278,7 @@ NARRATIVE_SOURCES = {
     "fumigacion-control-plagas-secundaria": "fumigaci*n-y-control-de-plagas.jpg",
     "jardineria-industrial-corporativa-secundaria": "jaridneria-industrial-corporativa-secundaria.jpg",
     "mantenimiento-integral-oficinas-secundaria": "mantenimeinto-integgral-oficinas-secundaria.jpg",
+    "comercializadora-insumos-secundaria": "comercializadora-de-insumos-secundaria.jpg",
 }
 
 
