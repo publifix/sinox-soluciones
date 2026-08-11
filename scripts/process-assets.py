@@ -315,6 +315,58 @@ def process_narrative():
         print("narrative fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
 
 
+# ---------------------------------------------------------------------------
+# 8. Service page dedicated hero photography -- full-bleed, same treatment
+#    as process_hero (no forced crop; object-fit: cover handles it at render
+#    time). Replaces the reused Servicios-grid card photo in service-hero__image
+#    for the service lines that have their own dedicated hero shot.
+# ---------------------------------------------------------------------------
+SERVICE_HERO_WIDTHS = [640, 1080, 1600, 2200]
+
+SERVICE_HERO_SOURCES = {
+    "servicio-limpieza-industrial-hero": "HERO-LIMPIEZA INDUSTRIAL.jpg",
+    "servicio-limpieza-data-centers-hero": "HERO-LIMPIEZA DATA CENTERS.jpg",
+    "servicio-limpieza-aeroespacial-hero": "HERO-LIMPIEZA AEROESPACIAL.jpg",
+}
+
+
+def process_service_heroes():
+    for slug, filename in SERVICE_HERO_SOURCES.items():
+        src = os.path.join(ROOT, filename)
+        if not os.path.exists(src):
+            print("process_service_heroes: skipping, source not found:", filename)
+            continue
+        im = Image.open(src)
+        im = ImageOps.exif_transpose(im).convert("RGB")
+
+        # Label each file with its *actual* output width -- if a requested
+        # bucket exceeds the source width, don't fake an upscaled label (the
+        # srcset descriptor has to match reality or the browser under-selects
+        # resolution on hi-dpi screens), and skip a bucket that would produce
+        # a duplicate of one already written.
+        written_widths = set()
+        for w in SERVICE_HERO_WIDTHS:
+            actual_w = min(w, im.width)
+            if actual_w in written_widths:
+                continue
+            written_widths.add(actual_w)
+            if actual_w == im.width:
+                resized = im.copy()
+            else:
+                ratio = actual_w / im.width
+                resized = im.resize((actual_w, round(im.height * ratio)), Image.LANCZOS)
+            dest = out("services", f"{slug}-{actual_w}.webp")
+            resized.save(dest, "WEBP", quality=76, method=6)
+            print("service hero ->", dest, resized.size, os.path.getsize(dest), "bytes")
+
+        fb_w = 1600
+        ratio = fb_w / im.width
+        fallback = im.resize((fb_w, round(im.height * ratio)), Image.LANCZOS)
+        dest = out("services", f"{slug}-{fb_w}.jpg")
+        fallback.save(dest, "JPEG", quality=78, optimize=True, progressive=True)
+        print("service hero fallback ->", dest, fallback.size, os.path.getsize(dest), "bytes")
+
+
 if __name__ == "__main__":
     process_logo()
     process_hero()
@@ -323,3 +375,4 @@ if __name__ == "__main__":
     process_services()
     process_testimonials()
     process_narrative()
+    process_service_heroes()
