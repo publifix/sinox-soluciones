@@ -275,13 +275,19 @@ NARRATIVE_SOURCES = {
     "limpieza-data-centers-secundaria": "limpieza-data-centers-secundaria.jpg",
     "limpieza-aeroespacial-secundaria": "limpieza-aeroespacial-secundaria .jpg",
     "mantenimiento-industrial-secundaria": "mantenimiento-industrial-secundaria.jpg",
+    "fumigacion-control-plagas-secundaria": "fumigaci*n-y-control-de-plagas.jpg",
 }
 
 
 def process_narrative():
     for slug, filename in NARRATIVE_SOURCES.items():
-        src = os.path.join(ROOT, filename)
-        if not os.path.exists(src):
+        # Glob rather than a literal join -- GitHub's web upload can normalize
+        # accented filenames (NFD, where an accented letter is two codepoints)
+        # in a way that doesn't match a hardcoded literal from an editor (NFC,
+        # one codepoint), so a "*" wildcard over the accented span sidesteps it.
+        matches = glob.glob(os.path.join(ROOT, filename))
+        src = matches[0] if matches else os.path.join(ROOT, filename)
+        if not matches and not os.path.exists(src):
             print("process_narrative: skipping, source not found:", filename)
             continue
         im = Image.open(src)
