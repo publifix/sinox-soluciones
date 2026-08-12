@@ -1,0 +1,324 @@
+/* Page-specific styles for Nosotros. Hero, stats, Modelo Operativo (minus
+   its video layer) and the clients ticker reuse existing global components
+   verbatim -- this file only owns the sections with no existing equivalent:
+   the "Quiénes somos" intro wrapper, Misión/Visión, Nuestros valores' grid
+   shell (the cards themselves reuse .model-card from model.css), and the
+   Trayectoria timeline. */
+
+/* ==========================================================================
+   Quiénes somos -- heading + paragraph (reuses .intro__paragraph from
+   intro.css for the body copy) + the stats block, reused verbatim below.
+   ========================================================================== */
+.about-intro {
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  padding-block: var(--space-16) var(--space-10);
+}
+
+@media (min-width: 768px) {
+  .about-intro {
+    padding-block: var(--space-20) var(--space-12);
+  }
+}
+
+.about-intro__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .about-intro__inner {
+    padding-inline: var(--space-10);
+  }
+}
+
+.about-intro__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-charcoal);
+  max-width: 26ch;
+}
+
+.about-intro__paragraph {
+  max-width: 74ch;
+}
+
+/* ==========================================================================
+   Misión y Visión -- two plain bordered columns, stacked on mobile.
+   ========================================================================== */
+.mission-vision {
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  padding-block: var(--space-10) var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .mission-vision {
+    padding-block: var(--space-12) var(--space-20);
+  }
+}
+
+.mission-vision__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .mission-vision__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mission-vision__inner {
+    padding-inline: var(--space-10);
+  }
+}
+
+.mv-card {
+  padding: var(--space-8);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(46, 46, 46, 0.14);
+}
+
+.mv-card__title {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-4);
+}
+
+.mv-card__text {
+  font-size: var(--text-body);
+  font-weight: var(--weight-light);
+  line-height: 1.65;
+  color: var(--color-charcoal);
+  opacity: 0.85;
+  max-width: 46ch;
+}
+
+/* ==========================================================================
+   Nuestros valores -- 6 cards, reusing .model-card's glass/turquoise-border
+   treatment from model.css. This file only owns the section shell + grid.
+   ========================================================================== */
+.values {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .values {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.values__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .values__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.values__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.values__subtitle {
+  font-size: var(--text-body);
+  font-weight: var(--weight-light);
+  line-height: 1.6;
+  color: var(--white-70);
+  max-width: 50ch;
+  margin-top: var(--space-3);
+}
+
+.values__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .values__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .values__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* ==========================================================================
+   Modelo Operativo (reused) -- overrides the reused .model min-height:
+   without the video layer, a forced full viewport height would leave the
+   heading+grid awkwardly stranded in empty black space, so this page uses
+   content-driven height instead while keeping every other rule identical.
+   ========================================================================== */
+.model--no-video {
+  min-height: 0;
+}
+
+.model--no-video .model__inner {
+  min-height: 0;
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .model--no-video .model__inner {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+/* ==========================================================================
+   Trayectoria -- horizontal drag-to-scroll timeline on desktop, vertical
+   stack on mobile (native block flow, no JS needed there).
+   ========================================================================== */
+.timeline-section {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding-block: var(--space-16) var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .timeline-section {
+    padding-block: var(--space-20) var(--space-24);
+  }
+}
+
+.timeline-section__inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .timeline-section__inner {
+    padding-inline: var(--space-10);
+    gap: var(--space-12);
+  }
+}
+
+.timeline-section__heading {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  line-height: 1.15;
+  color: var(--color-white);
+  max-width: 30ch;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    padding-block: var(--space-2) var(--space-6);
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .timeline::-webkit-scrollbar {
+    display: none;
+  }
+
+  .timeline.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+}
+
+.timeline__item {
+  position: relative;
+  padding-inline-start: var(--space-6);
+  border-left: 2px solid var(--white-14);
+}
+
+@media (min-width: 768px) {
+  .timeline__item {
+    flex: 0 0 auto;
+    width: 280px;
+    padding-inline: var(--space-6);
+    border-left: none;
+    border-top: 2px solid var(--white-14);
+    scroll-snap-align: start;
+    user-select: none;
+  }
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 0.4em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-turquoise);
+}
+
+@media (min-width: 768px) {
+  .timeline__item::before {
+    left: var(--space-6);
+    top: -5px;
+  }
+}
+
+.timeline__year {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-turquoise);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__text {
+  font-size: 0.9375rem;
+  font-weight: var(--weight-light);
+  line-height: 1.6;
+  color: var(--white-85);
+  max-width: 34ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline {
+    scroll-behavior: auto;
+  }
+}

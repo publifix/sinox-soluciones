@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fumigación y Control de Plagas | SINOX Soluciones</title>
-<meta name="description" content="Fumigación y control de plagas con cumplimiento normativo. Procesos documentados y seguimiento constante para espacios industriales y corporativos." />
+<title>Nosotros | SINOX Soluciones</title>
+<meta name="description" content="SINOX es una empresa mexicana fundada en 2018 en Querétaro, especializada en limpieza, mantenimiento, fumigación y jardinería para el sector industrial y corporativo." />
 <meta name="theme-color" content="#000000" />
 <script>document.documentElement.classList.add('js');</script>
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Fumigación y Control de Plagas | SINOX Soluciones" />
-<meta property="og:description" content="Fumigación y control de plagas con cumplimiento normativo. Procesos documentados y seguimiento constante para espacios industriales y corporativos." />
+<meta property="og:title" content="Nosotros | SINOX Soluciones" />
+<meta property="og:description" content="SINOX es una empresa mexicana fundada en 2018 en Querétaro, especializada en limpieza, mantenimiento, fumigación y jardinería para el sector industrial y corporativo." />
 
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" href="favicon.png" type="image/png" />
@@ -24,14 +24,16 @@
 <link rel="stylesheet" href="assets/css/base.css" />
 <link rel="stylesheet" href="assets/css/motion.css" />
 <link rel="stylesheet" href="assets/css/header.css" />
-<link rel="stylesheet" href="assets/css/clients.css" />
+<link rel="stylesheet" href="assets/css/hero.css" />
+<link rel="stylesheet" href="assets/css/intro.css" />
 <link rel="stylesheet" href="assets/css/model.css" />
+<link rel="stylesheet" href="assets/css/clients.css" />
 <link rel="stylesheet" href="assets/css/cta.css" />
 <link rel="stylesheet" href="assets/css/footer.css" />
 <link rel="stylesheet" href="assets/css/whatsapp-float.css" />
-<link rel="stylesheet" href="assets/css/service-page.css" />
+<link rel="stylesheet" href="assets/css/nosotros.css" />
 </head>
-<body data-service="fumigacion-control-plagas">
+<body>
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
 <header class="site-header">
@@ -50,7 +52,7 @@
       <ul class="site-nav__list">
         <li><a href="index.html#servicios">Servicios</a></li>
         <li><a href="industrias.html">Industrias</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -73,7 +75,7 @@
     <div class="mobile-nav__inner">
       <a href="index.html#servicios">Servicios</a>
       <a href="industrias.html">Industrias</a>
-      <a href="nosotros.html">Nosotros</a>
+      <a href="nosotros.html" aria-current="page">Nosotros</a>
       <a href="#contacto">Contacto</a>
       <a class="btn btn--primary mobile-nav__cta" href="#contacto">Solicitar cotización</a>
     </div>
@@ -81,151 +83,276 @@
 </header>
 
 <main id="main">
-  <section class="service-hero" aria-labelledby="service-hero-title">
-    <div class="service-hero__media">
-      <!-- Reusing the Servicios grid photo for now; swap for dedicated hero photography later if provided -->
-      <div class="service-hero__image" data-image="servicio-fumigacion-control-plagas-hero">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="assets/img/services/servicio-fumigacion-control-plagas-480.webp 480w, assets/img/services/servicio-fumigacion-control-plagas-800.webp 800w, assets/img/services/servicio-fumigacion-control-plagas-1200.webp 1200w"
-            sizes="100vw"
-          />
-          <img
-            src="assets/img/services/servicio-fumigacion-control-plagas-800.jpg"
-            alt=""
-            width="800"
-            height="1000"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </picture>
-      </div>
-      <div class="service-hero__scrim"></div>
+  <section class="hero" aria-labelledby="about-hero-title">
+    <div class="hero__media">
+      <ul class="hero__slides">
+        <li class="hero__slide is-active">
+          <picture class="hero__picture">
+            <source
+              type="image/webp"
+              srcset="assets/img/hero/hero-2-640.webp 640w, assets/img/hero/hero-2-1080.webp 1080w, assets/img/hero/hero-2-1600.webp 1600w, assets/img/hero/hero-2-1792.webp 1792w"
+              sizes="100vw"
+            />
+            <img
+              class="hero__img"
+              src="assets/img/hero/hero-2-1600.jpg"
+              alt=""
+              width="1600"
+              height="900"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+        </li>
+      </ul>
     </div>
+    <div class="hero__scrim"></div>
 
-    <div class="service-hero__inner">
-      <nav class="service-hero__breadcrumb" aria-label="Ruta de navegación">
-        <a href="index.html#servicios">Servicios</a>
-        <span class="service-hero__breadcrumb-sep" aria-hidden="true">/</span>
-        <span class="service-hero__breadcrumb-current" aria-current="page">Fumigación y Control de Plagas</span>
-      </nav>
-
-      <div class="service-hero__content">
-        <p class="service-hero__kicker">
-          <span>Fumigación y control de plagas con cumplimiento normativo</span>
-          <span>Procesos documentados y seguimiento constante para espacios industriales y corporativos</span>
+    <div class="hero__content">
+      <div class="hero__panel">
+        <p class="hero__eyebrow">Servicios industriales especializados — Querétaro y Bajío</p>
+        <h1 class="hero__title" id="about-hero-title">
+          La empresa de limpieza y mantenimiento que elige la industria de mayor exigencia técnica
+        </h1>
+        <p class="hero__description">
+          Desde 2018 en Querétaro, trabajamos con plantas aeroespaciales, data centers y manufactura bajo
+          protocolos que no dejan lugar al error
         </p>
-        <h1 class="service-hero__title" id="service-hero-title">Fumigación y Control de Plagas</h1>
       </div>
     </div>
   </section>
 
-  <section class="narrative" aria-label="Por qué el control de plagas importa" data-narrative>
-    <div class="narrative__sticky" data-narrative-sticky>
-      <div class="narrative__track" data-narrative-track>
-        <div class="narrative__panel narrative__panel--a">
-          <div class="narrative__media placeholder-media" data-image="fumigacion-control-plagas-secundaria">
-            <picture>
-              <source
-                type="image/webp"
-                srcset="assets/img/services/fumigacion-control-plagas-secundaria-480.webp 480w, assets/img/services/fumigacion-control-plagas-secundaria-800.webp 800w, assets/img/services/fumigacion-control-plagas-secundaria-1200.webp 1200w"
-                sizes="(min-width: 768px) 50vw, 100vw"
-              />
-              <img
-                src="assets/img/services/fumigacion-control-plagas-secundaria-800.jpg"
-                alt=""
-                width="800"
-                height="533"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div class="narrative__content">
-            <p class="narrative__lead">
-              Una plaga no controlada no es solo un problema de imagen, es un riesgo de contaminación, un hallazgo
-              en auditoría y, en algunos sectores, motivo de paro operativo.
-            </p>
-            <p class="narrative__body">
-              En SINOX aplicamos control de plagas bajo la normativa aplicable, con diagnóstico, plan de acción y
-              seguimiento documentado de cada intervención, un requisito frecuente en las auditorías de nuestros
-              clientes industriales.
-            </p>
-          </div>
-        </div>
+  <section class="about-intro" aria-labelledby="about-intro-heading">
+    <div class="about-intro__inner">
+      <h2 class="about-intro__heading" id="about-intro-heading" data-reveal>
+        Servicios que sostienen operaciones críticas
+      </h2>
+      <p class="about-intro__paragraph intro__paragraph" data-reveal>
+        SINOX es una empresa mexicana fundada en 2018 en Querétaro, especializada en limpieza, mantenimiento,
+        fumigación y jardinería para el sector industrial y corporativo. Trabajamos con instalaciones donde la
+        limpieza no es estética: es parte del protocolo de operación, en plantas aeroespaciales, data centers y
+        líneas de manufactura de precisión. Personal capacitado, procesos documentados y un equipo que entiende
+        que cada industria exige un estándar distinto.
+      </p>
 
-        <div class="narrative__panel narrative__panel--b">
-          <div class="narrative__panel-inner">
-            <h2 class="narrative__heading">¿Qué nos diferencia?</h2>
-            <ol class="narrative__list">
-              <li>1. Diagnóstico y plan de control adaptado a cada instalación</li>
-              <li>2. Aplicaciones programadas con cumplimiento normativo verificable</li>
-              <li>3. Reportes de seguimiento listos para tus auditorías</li>
-            </ol>
+      <ul class="stats" data-reveal-stagger>
+        <li class="stat" data-reveal>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.75" />
+                <path
+                  d="M3.5 19c.6-3 3-5 5.5-5s4.9 2 5.5 5"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M15.5 4.5c1.4.4 2.5 1.7 2.5 3.2 0 1.6-1.1 2.9-2.6 3.2"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <path d="M16 14c2.1.4 3.8 2.1 4.3 4.6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+              </svg>
+            </span>
+            <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="300">300</span></p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <p class="stat__label">colaboradores en operación</p>
+        </li>
 
-  <section class="highlights" aria-labelledby="highlights-heading" data-reveal>
-    <div class="highlights__inner">
-      <h2 class="highlights__heading" id="highlights-heading">Cómo trabajamos</h2>
+        <li class="stat" data-reveal>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linejoin="round"
+                />
+                <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.75" />
+              </svg>
+            </span>
+            <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="20">20</span></p>
+          </div>
+          <p class="stat__label">parques industriales atendidos</p>
+        </li>
 
-      <ul class="highlights__track" data-highlights-track>
-        <li class="highlight-card">
-          <span class="highlight-card__index" aria-hidden="true">01</span>
-          <h3 class="highlight-card__title">Diagnóstico inicial</h3>
-          <p class="highlight-card__description">Evaluación de riesgo y plan de control específico para tu instalación</p>
+        <li class="stat" data-reveal>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="5.5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.75" />
+                <path d="M4 10h16" stroke="currentColor" stroke-width="1.75" />
+                <path d="M8 3.5v3.5M16 3.5v3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+              </svg>
+            </span>
+            <p class="stat__value"><span class="stat__prefix">+</span><span data-count-to="8">8</span></p>
+          </div>
+          <p class="stat__label">años de experiencia</p>
         </li>
-        <li class="highlight-card">
-          <span class="highlight-card__index" aria-hidden="true">02</span>
-          <h3 class="highlight-card__title">Fumigación programada</h3>
-          <p class="highlight-card__description">Aplicaciones periódicas conforme a un calendario definido</p>
-        </li>
-        <li class="highlight-card">
-          <span class="highlight-card__index" aria-hidden="true">03</span>
-          <h3 class="highlight-card__title">Cumplimiento normativo</h3>
-          <p class="highlight-card__description">Procesos alineados a la regulación aplicable a tu sector</p>
-        </li>
-        <li class="highlight-card">
-          <span class="highlight-card__index" aria-hidden="true">04</span>
-          <h3 class="highlight-card__title">Reportes de seguimiento</h3>
-          <p class="highlight-card__description">Evidencia documentada de cada intervención</p>
+
+        <li class="stat" data-reveal>
+          <div class="stat__row">
+            <span class="stat__icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 3.5 20.5 8 12 12.5 3.5 8 12 3.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linejoin="round"
+                />
+                <path d="M3.5 12.5 12 17l8.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" />
+                <path d="M3.5 16.5 12 21l8.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <p class="stat__value"><span data-count-to="4">4</span></p>
+          </div>
+          <p class="stat__label">líneas de servicio especializadas</p>
         </li>
       </ul>
     </div>
   </section>
 
-  <section class="benefits" aria-labelledby="benefits-heading" data-reveal>
-    <div class="benefits__inner">
-      <h2 class="benefits__heading" id="benefits-heading">Beneficios</h2>
+  <section class="mission-vision" aria-label="Misión y Visión">
+    <div class="mission-vision__inner">
+      <article class="mv-card" data-reveal>
+        <h2 class="mv-card__title">Misión</h2>
+        <p class="mv-card__text">
+          Proveer servicios integrales de limpieza, mantenimiento, fumigación y jardinería que respondan a las
+          exigencias específicas de cada industria, mediante procesos documentados, tecnología aplicada y
+          personal profesional.
+        </p>
+      </article>
 
-      <div class="benefits__grid" data-reveal-stagger>
+      <article class="mv-card" data-reveal>
+        <h2 class="mv-card__title">Visión</h2>
+        <p class="mv-card__text">
+          Consolidarnos como referente nacional en servicios especializados para industrias de alta exigencia
+          técnica, construyendo relaciones de largo plazo con nuestros clientes, colaboradores y socios
+          comerciales.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="values" aria-labelledby="values-heading" data-reveal>
+    <div class="values__inner">
+      <div>
+        <h2 class="values__heading" id="values-heading">Nuestros valores</h2>
+        <p class="values__subtitle">Los principios que guían cada decisión y cada servicio que brindamos</p>
+      </div>
+
+      <div class="values__grid" data-reveal-stagger>
         <article class="model-card" data-reveal>
-          <h3 class="model-card__title">Cumplimiento verificable en cada auditoría</h3>
+          <h3 class="model-card__title">Precisión</h3>
+          <p class="model-card__description">Cada protocolo se ejecuta igual, sin importar el turno o el operador.</p>
+        </article>
+
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Cumplimiento</h3>
+          <p class="model-card__description">Operamos bajo la normativa aplicable a cada industria, sin atajos.</p>
+        </article>
+
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Especialización</h3>
+          <p class="model-card__description">No tratamos todos los espacios igual: adaptamos el servicio al entorno.</p>
+        </article>
+
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Confiabilidad</h3>
           <p class="model-card__description">
-            Nuestros reportes documentados respaldan tus procesos de inspección y certificación.
+            Nuestros clientes de mayor exigencia técnica siguen con nosotros año tras año.
           </p>
         </article>
 
         <article class="model-card" data-reveal>
-          <h3 class="model-card__title">Menor riesgo de contaminación cruzada</h3>
+          <h3 class="model-card__title">Responsabilidad social</h3>
+          <p class="model-card__description">Generamos empleo digno en Querétaro y el Bajío.</p>
+        </article>
+
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Comunicación</h3>
+          <p class="model-card__description">Reportes claros y seguimiento constante de cada servicio.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="model model--no-video" id="modelo-operativo" aria-labelledby="model-heading">
+    <div class="model__inner">
+      <h2 class="model__heading" id="model-heading" data-reveal>
+        <span class="model__heading-light">Modelo</span> <span class="model__heading-bold">operativo</span>
+      </h2>
+
+      <div class="model__grid" data-reveal-stagger>
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Protocolo</h3>
           <p class="model-card__description">
-            Protocolos de control diseñados para proteger la integridad de tu operación.
+            Procesos documentados y checklists de verificación en cada intervención, adaptados a los estándares
+            del sector que atendemos.
           </p>
         </article>
 
         <article class="model-card" data-reveal>
-          <h3 class="model-card__title">Seguimiento constante, no solo intervenciones puntuales</h3>
+          <h3 class="model-card__title">Cumplimiento</h3>
           <p class="model-card__description">
-            Damos continuidad al control de plagas con calendarios y reportes periódicos, no solo visitas
-            aisladas.
+            Trabajamos bajo la normativa aplicable a cada industria, desde control de plagas hasta manejo de
+            espacios críticos, sin atajos.
+          </p>
+        </article>
+
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Especialización</h3>
+          <p class="model-card__description">
+            No aplicamos el mismo procedimiento a una nave industrial que a un data center. Cada servicio se
+            diseña para el entorno específico del cliente.
+          </p>
+        </article>
+
+        <article class="model-card" data-reveal>
+          <h3 class="model-card__title">Tecnología</h3>
+          <p class="model-card__description">
+            Equipos y procesos actualizados para intervenciones de alto rendimiento, con reporte y seguimiento de
+            cada servicio.
           </p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="timeline-section" aria-labelledby="timeline-heading" data-reveal>
+    <div class="timeline-section__inner">
+      <h2 class="timeline-section__heading" id="timeline-heading">
+        Un camino construido sobre precisión, no sobre volumen
+      </h2>
+
+      <ul class="timeline" data-timeline-track>
+        <li class="timeline__item">
+          <span class="timeline__year">2018</span>
+          <p class="timeline__text">Fundación de SINOX en Querétaro, con servicios de limpieza industrial.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__year">2019–2021</span>
+          <p class="timeline__text">Incorporamos mantenimiento, fumigación y jardinería a nuestro portafolio.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__year">[Fecha a confirmar]</span>
+          <p class="timeline__text">Iniciamos operación con clientes del sector aeroespacial.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__year">[Fecha a confirmar]</span>
+          <p class="timeline__text">Incorporamos data centers a nuestra cartera.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__year">2026</span>
+          <p class="timeline__text">
+            8 años de operación, con presencia en el corredor industrial de Querétaro y el Bajío.
+          </p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -240,13 +367,6 @@
         <li><img src="assets/img/clients/amway.png" alt="Amway" loading="lazy" width="936" height="320" /></li>
         <li><img src="assets/img/clients/odata.png" alt="ODATA" loading="lazy" width="1430" height="320" /></li>
       </ul>
-    </div>
-  </section>
-
-  <section class="related-services" aria-labelledby="related-services-heading" data-reveal>
-    <div class="related-services__inner">
-      <h2 class="related-services__heading" id="related-services-heading">Servicios relacionados</h2>
-      <div class="related-services__track" data-related-track></div>
     </div>
   </section>
 
@@ -415,7 +535,7 @@
       <div class="site-footer__col">
         <h2 class="site-footer__col-title">Empresa</h2>
         <ul>
-          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
           <li><a href="industrias.html">Industrias</a></li>
           <li><a href="index.html#casos-de-exito">Casos de éxito</a></li>
           <li><a href="index.html#bolsa-de-trabajo">Bolsa de trabajo</a></li>
@@ -507,7 +627,6 @@
 <script src="assets/js/header.js" defer></script>
 <script src="assets/js/scroll-reveal.js" defer></script>
 <script src="assets/js/contact-form.js" defer></script>
-<script src="assets/js/data/services-catalog.js" defer></script>
-<script src="assets/js/service-page.js" defer></script>
+<script src="assets/js/nosotros.js" defer></script>
 </body>
 </html>
