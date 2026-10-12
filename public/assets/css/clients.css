@@ -65,6 +65,22 @@
   width: auto;
   max-width: clamp(96px, 14vw, 160px);
   object-fit: contain;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.clients__list img:hover {
+  transform: scale(1.07);
+  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 0.18));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients__list img {
+    transition: none;
+  }
+
+  .clients__list img:hover {
+    transform: none;
+  }
 }
 
 /* Desktop: keep the whole strip on a single line. The seven logos have
