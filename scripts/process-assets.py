@@ -92,9 +92,16 @@ CLIENT_SOURCES = {
     "airbus-helicopters": "Airbus-Helicopters-Logo byn.jpg",
     "bombardier": "BOMBARDIER LOGO byn.jpg",
     "equinix": "Equinix_logo byn.jpg",
-    "gerresheimer": "Gerresheimer-logo byn.jpg",
     "amway": "AMWAY.png",
     "odata": "odata-logo.png",
+}
+
+# Logos uploaded with a real alpha channel already (no white background to
+# key out) -- just desaturate to match the rest of the strip's monochrome
+# look while keeping the existing alpha, then crop/resize the same way.
+PRE_KEYED_CLIENT_SOURCES = {
+    "oracle": "Oracle-Logo.png",
+    "axtel": "AxtelCorp_Op1.png",
 }
 
 # luminance ramp: <=OPAQUE_AT stays fully opaque, >=CLEAR_AT becomes fully transparent
@@ -137,6 +144,38 @@ def process_clients():
         dest = out("clients", f"{slug}.png")
         keyed.save(dest, optimize=True)
         print("client ->", dest, keyed.size, os.path.getsize(dest), "bytes")
+
+
+def _grayscale_keep_alpha(im_rgba):
+    gray = ImageOps.grayscale(im_rgba.convert("RGB"))
+    alpha = im_rgba.split()[-1]
+    return Image.merge("RGBA", (gray, gray, gray, alpha))
+
+
+def process_pre_keyed_clients():
+    for slug, filename in PRE_KEYED_CLIENT_SOURCES.items():
+        src = os.path.join(ROOT, filename)
+        im = Image.open(src)
+        im = ImageOps.exif_transpose(im).convert("RGBA")
+
+        keyed = _grayscale_keep_alpha(im)
+        bbox = keyed.split()[-1].getbbox()
+        if bbox:
+            pad_x = int((bbox[2] - bbox[0]) * 0.04)
+            pad_y = int((bbox[3] - bbox[1]) * 0.04)
+            l = max(0, bbox[0] - pad_x)
+            t = max(0, bbox[1] - pad_y)
+            r = min(keyed.width, bbox[2] + pad_x)
+            b = min(keyed.height, bbox[3] + pad_y)
+            keyed = keyed.crop((l, t, r, b))
+
+        ratio = TARGET_HEIGHT / keyed.height
+        new_w = max(1, round(keyed.width * ratio))
+        keyed = keyed.resize((new_w, TARGET_HEIGHT), Image.LANCZOS)
+
+        dest = out("clients", f"{slug}.png")
+        keyed.save(dest, optimize=True)
+        print("client (pre-keyed) ->", dest, keyed.size, os.path.getsize(dest), "bytes")
 
 
 # ---------------------------------------------------------------------------
@@ -329,6 +368,7 @@ if __name__ == "__main__":
     process_logo()
     process_hero()
     process_clients()
+    process_pre_keyed_clients()
     process_favicon()
     process_services()
     process_testimonials()

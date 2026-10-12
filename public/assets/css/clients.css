@@ -67,22 +67,24 @@
   object-fit: contain;
 }
 
-/* Desktop: keep the whole strip on a single line. The six logos have very
-   different native aspect ratios (Bombardier/Gerresheimer/ODATA are much
+/* Desktop: keep the whole strip on a single line. The seven logos have
+   very different native aspect ratios (Bombardier/Oracle/ODATA are much
    wider than Equinix/Amway), so both the slot height and each logo's own
    max-width shrink together with viewport width to guarantee they never
-   wrap, down to the 1024px floor. */
+   wrap or overflow the row, down to the 1024px floor. The clamp ceilings
+   are sized so 7 logos + 6 gaps never exceed --content-max's inner width,
+   even past the viewport where the clamps hit their ceiling. */
 @media (min-width: 1024px) {
   .clients__list {
     flex-wrap: nowrap;
-    column-gap: clamp(2rem, 4vw - 0.5rem, 3rem);
+    column-gap: clamp(1.25rem, 3vw - 6px, 2.25rem);
   }
 
   .clients__list li {
-    height: clamp(38px, 2vw + 16px, 48px);
+    height: clamp(30px, 1.7vw + 13px, 38px);
   }
 
   .clients__list img {
-    max-width: clamp(120px, 5vw + 68px, 150px);
+    max-width: clamp(88px, 7.2vw + 15px, 118px);
   }
 }
