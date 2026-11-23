@@ -45,4 +45,16 @@ window.SINOX_ARTICLES_CATALOG = [
     readingMinutes: 8,
     href: '/blog/control-fod-limpieza-aeroespacial-queretaro/',
   },
+  {
+    slug: 'mantenimiento-preventivo-vs-correctivo-industrial',
+    title: 'Mantenimiento preventivo vs. correctivo: cuál necesita tu planta (y cuándo combinar ambos)',
+    excerpt:
+      'La diferencia real entre mantenimiento preventivo y correctivo, por qué casi ninguna planta puede operar con uno solo, y señales de que tu mantenimiento actual se quedó corto.',
+    category: 'Mantenimiento Industrial',
+    categorySlug: 'mantenimiento-industrial',
+    date: '2026-12-14',
+    dateDisplay: '14 de diciembre de 2026',
+    readingMinutes: 7,
+    href: '/blog/mantenimiento-preventivo-vs-correctivo-industrial/',
+  },
 ];
