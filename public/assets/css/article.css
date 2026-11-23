@@ -151,23 +151,28 @@
 .article-toc__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  border-left: 1px solid var(--scrim-black-15);
+  gap: var(--space-2);
 }
 
+/* Text stays charcoal at every state -- turquoise text on white measures
+   ~1.7:1 contrast (see base.css's note on .link-arrow for the same issue),
+   so the turquoise accent moves to the border instead of the text color.
+   0.75 is the dimmed resting opacity; it's the minimum that still clears
+   4.5:1 for this font-size, with real margin at full opacity on hover. */
 .article-toc__list a {
   display: block;
-  padding-left: var(--space-4);
+  padding: var(--space-1) var(--space-4);
+  border-left: 2px solid var(--scrim-black-15);
   font-size: 0.875rem;
   line-height: 1.4;
   color: var(--color-charcoal);
-  opacity: 0.6;
-  transition: opacity var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  opacity: 0.75;
+  transition: opacity var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 
 .article-toc__list a:hover {
   opacity: 1;
-  color: var(--color-turquoise-hover);
+  border-left-color: var(--color-turquoise);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -202,11 +207,13 @@
   text-decoration: underline;
   text-decoration-color: var(--color-turquoise);
   text-underline-offset: 3px;
-  transition: color var(--dur-fast) var(--ease-out);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 
+/* Text stays charcoal on hover too -- turquoise text on white fails
+   contrast (~1.7:1); only the underline brightens. */
 .article-content a:hover {
-  color: var(--color-turquoise-hover);
+  text-decoration-color: var(--color-turquoise-hover);
 }
 
 .article-content h2 {
@@ -333,11 +340,13 @@
   color: var(--color-charcoal);
 }
 
-/* ---- FAQ ---- */
+/* ---- FAQ: native <details>/<summary> accordion -- expand/collapse works
+   without JS, and the answer text is still in the DOM (and in the FAQPage
+   JSON-LD) when collapsed, so nothing is hidden from search engines. ---- */
 .article-faq {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-2);
 }
 
 .article-faq__item {
@@ -346,17 +355,50 @@
 }
 
 .article-faq__question {
-  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  list-style: none;
   font-size: 1.0625rem;
   font-weight: var(--weight-bold);
   color: var(--color-charcoal);
+  cursor: pointer;
+}
+
+.article-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.article-faq__question::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-top: -4px;
+  border-right: 2px solid var(--color-charcoal);
+  border-bottom: 2px solid var(--color-charcoal);
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.article-faq__item[open] .article-faq__question::after {
+  transform: rotate(-135deg);
+  margin-top: 0;
 }
 
 .article-faq__answer {
+  margin-top: var(--space-3);
   font-size: 0.9375rem;
   font-weight: var(--weight-light);
   line-height: 1.65;
   color: var(--color-charcoal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-faq__question::after {
+    transition: none;
+  }
 }
 
 /* ---- Inline CTA band, inside the content column ---- */

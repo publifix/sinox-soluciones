@@ -83,15 +83,16 @@
   font-size: var(--text-h2);
 }
 
+/* Solid charcoal, no opacity: charcoal-at-78%-over-turquoise measured at
+   ~4.4:1 contrast, just under the 4.5:1 text minimum. Full opacity clears
+   it comfortably (~6.8:1) without changing how the card reads. */
 .blog-card--featured .blog-card__excerpt {
   color: var(--color-charcoal);
-  opacity: 0.78;
   max-width: 56ch;
 }
 
 .blog-card--featured .blog-card__meta {
   color: var(--color-charcoal);
-  opacity: 0.7;
 }
 
 /* ==========================================================================
