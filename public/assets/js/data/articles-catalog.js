@@ -33,4 +33,16 @@ window.SINOX_ARTICLES_CATALOG = [
     readingMinutes: 8,
     href: '/blog/limpieza-data-centers-protocolo-proveedor/',
   },
+  {
+    slug: 'control-fod-limpieza-aeroespacial-queretaro',
+    title: 'Control de FOD en plantas aeroespaciales: qué debe garantizar tu proveedor de limpieza',
+    excerpt:
+      'Qué es el FOD, por qué es el centro de la limpieza aeroespacial y qué debe incluir un protocolo que controle herramientas, materiales y zonas críticas.',
+    category: 'Limpieza Aeroespacial',
+    categorySlug: 'limpieza-aeroespacial',
+    date: '2026-12-07',
+    dateDisplay: '7 de diciembre de 2026',
+    readingMinutes: 8,
+    href: '/blog/control-fod-limpieza-aeroespacial-queretaro/',
+  },
 ];
