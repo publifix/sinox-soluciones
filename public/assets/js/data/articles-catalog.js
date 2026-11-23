@@ -21,4 +21,16 @@ window.SINOX_ARTICLES_CATALOG = [
     readingMinutes: 9,
     href: '/blog/como-elegir-proveedor-limpieza-industrial-queretaro/',
   },
+  {
+    slug: 'limpieza-data-centers-protocolo-proveedor',
+    title: 'Limpieza de data centers: qué debe incluir el protocolo de tu proveedor',
+    excerpt:
+      'Por qué un data center no se limpia como una planta industrial: control de partículas, descarga electrostática, productos no corrosivos y acceso documentado.',
+    category: 'Limpieza de Data Centers',
+    categorySlug: 'limpieza-data-centers',
+    date: '2026-11-30',
+    dateDisplay: '30 de noviembre de 2026',
+    readingMinutes: 8,
+    href: '/blog/limpieza-data-centers-protocolo-proveedor/',
+  },
 ];
